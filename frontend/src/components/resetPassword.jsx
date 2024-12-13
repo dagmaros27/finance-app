@@ -33,7 +33,7 @@ export default function ResetPassword({ open, handleClose, email }) {
     try {
       await reset({
         email,
-        otp,
+        code: otp,
         newPassword,
         onSuccess: () => {
           setMessage("Password reset successful!");

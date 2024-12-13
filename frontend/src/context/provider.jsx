@@ -99,13 +99,13 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const reset = async ({ email, otp, newPassword, onSuccess, onFailure }) => {
+  const reset = async ({ email, code, newPassword, onSuccess, onFailure }) => {
     try {
       setLoading(true);
       setError(null);
 
       // Call the API or function to reset the password
-      await resetPassword({ email, otp, newPassword }); // Adjust this based on your API function
+      await resetPassword({ email, code, newPassword }); // Adjust this based on your API function
 
       if (onSuccess) onSuccess(); // Call success callback if provided
     } catch (err) {

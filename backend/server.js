@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
   res.send("starter application");
 });
 
-app.use("/api/user/", userRoute);
-app.use("/api/transaction/", transactionRoute);
+app.use("/api/user", userRoute);
+app.use("/api/transaction", transactionRoute);
 app.use(notFound);
 app.use(errorHandler);
 

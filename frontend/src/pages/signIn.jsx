@@ -133,7 +133,8 @@ function SignIn(props) {
 
   const handleResetPassword = useCallback((email) => {
     setResetEmail(email);
-    setShowResetPassword(true);
+    setShowForgotPassword(false);
+    setResetPasswordModalOpen(true);
   }, []);
 
   return (

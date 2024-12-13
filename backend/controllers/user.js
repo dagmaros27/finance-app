@@ -64,7 +64,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 const forgotPassword = asyncHandler(async (req, res) => {
   const email = req.body.email;
-  console.log("email", email);
 
   const user = await User.find({ email: email });
 
@@ -72,18 +71,20 @@ const forgotPassword = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Email not found");
   }
-
-  await sendOtp(email);
+  sendOtp(email);
   console.log("OTP sent successfully");
   res.status(200).json({ message: "Password reset OTP sent successfully" });
 });
 
 const resetPassword = asyncHandler(async (req, res) => {
+  console.log("reset password");
   const { email, code, newPassword } = req.body;
+  console.log(email, code, newPassword);
 
   //verify the OTP
   const otpEntry = await OTP.findOne({ email, code });
 
+  console.log(otpEntry);
   if (!otpEntry) {
     res.status(400);
     throw new Error("Invalid OTP code");
@@ -93,6 +94,8 @@ const resetPassword = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("OTP code has expired");
   }
+
+  console.log("OTP is valid");
 
   // if OTP is valid, proceed with password reset
   const user = await User.findOne({ email });
