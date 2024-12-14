@@ -24,7 +24,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token && !user) {
-      fetchUser(); // Fetch user details if token exists but user state is empty
+      fetchUser();
     }
   }, [user]);
 
@@ -124,7 +124,7 @@ export const AppProvider = ({ children }) => {
       setLoading(true);
       const response = await addDeposit(data);
       setTransactions((prev) => [...prev, response.data.transaction]);
-      await fetchUser(); // Add this line to update user data
+      await fetchUser();
       if (data.onSuccess) data.onSuccess();
     } catch (err) {
       setError(err.response?.data?.message || "Deposit failed");
@@ -141,7 +141,7 @@ export const AppProvider = ({ children }) => {
       setLoading(true);
       const response = await cashout(data);
       setTransactions((prev) => [...prev, response.data.transaction]);
-      await fetchUser(); // Add this line to update user data
+      await fetchUser();
       if (data.onSuccess) data.onSuccess();
     } catch (err) {
       setError(err.response?.data?.message || "Cashout failed");

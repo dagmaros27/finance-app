@@ -41,7 +41,7 @@ const sendOtp = async (email) => {
         <p>You requested to reset your password. Please use the following code to reset your password:</p>
         <h2>${resetCode}</h2>
         <p>If you did not request this, please ignore this email.</p>
-        <p>Best regards,<br>Your Company</p>
+        <p>Best regards,<br> Dagmaros</p>
       `,
     };
 
